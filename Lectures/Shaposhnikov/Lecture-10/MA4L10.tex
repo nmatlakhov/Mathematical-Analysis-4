@@ -1,0 +1,495 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+\lhead{Математический анализ - \RN{4}}
+\chead{Шапошников С.В.}
+\rhead{Лекция - 10}
+
+\section*{Меры. Внешние меры}
+\textbf{\uline{Цель}}: Мера Лебега и мера Хаусдорфа. Меры Лебега хватает, чтобы говорить об объемах без тонкостей связанных с интегралом Римана и мерой Жордана. Мера Хаусдорфа это правильный способ говорить о поверхностных площадях, комерных объемах и так далее. 
+
+Таким образом, если хотим проинтегрировать в $\MR^n$ по какому-нибудь необычному множеству $\Rightarrow$ мера Лебега, если хотим проинтегрировать в $\MR^n$ или в метрическом пространстве по какому-то объекту и хотим, чтобы мера учитывала его геометрию (например, выражала площадь поверхности или длину кривой), то надо использовать меру Хаусдорфа. 
+
+\begin{defn}
+	Пусть $X \neq \VN$, набор подмножеств $\mathcal{A}$ множества $X$ называется \uwave{алгеброй}, если:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\VN, X \in \mathcal{A}$;
+		\item $A,B \in \mathcal{A} \Rightarrow A \cap B, \, A \setminus B, \, A \cup B \in \mathcal{A}$;
+	\end{enumerate} 
+	Если дополнительно верно, что:
+	\begin{enumerate}[label=\arabic*)]
+		\setcounter{enumi}{2}
+		\item $\forall n \in \MN, \, A_n \in \mathcal{A} \Rightarrow \bigcup\limits_n A_n, \, \bigcap\limits_n A_n \in \mathcal{A}$;
+	\end{enumerate} 
+	
+	то $\mathcal{A}$ называется \uwave{$\sigma$-алгеброй}.
+\end{defn}
+
+\textbf{Примеры алгебр}:
+\begin{enumerate}[label=\arabic*)]
+	\item $\{\VN,X\}$ - $\sigma$-алгебра;
+	\item $2^X$ - $\sigma$-алгебра;
+	\item Возьмем $B \in X$ и набор $\{\VN,B, X \setminus B, X \}$ - $\sigma$-алгебра; 
+	\item $\{\text{конечные объединения промежутков из } [0,1]\}$ - алгебра, но не $\sigma$-алгебра;
+	\begin{proof}
+		Пересечение промежутков - это промежуток, объединение промежутков это объединение промежутков. Дополнение к промежутку это либо промежуток, либо объединение двух промежутков. Дополнение к конечному объединению $\Rightarrow$ пересечение дополнений $\Rightarrow$ пересечение объектов из данного набора. Рассмотрим рациональные числа:
+		$$
+		\MQ = \bigcup\limits_n\{r_n\} \overset{?}{=} \bigcup\limits_{1}^N\MI_k
+		$$
+		Это будет не верно, поскольку если $\MI_k$ не является точкой, то в $\MI_k$ есть иррациональное число $\Rightarrow$ должны быть точками $\Rightarrow$ получается конечный набор точек, а $\MQ$ - счётное множество $\Rightarrow$ не являтеся $\sigma$-алгеброй.
+	\end{proof} 
+	\item $\{\VN,\MN, \text{конечные множества и дополнения к конечным множествам в }\MN\}$ - алгебра, но не $\sigma$-алгебра; 
+	\begin{proof}
+		Это можно показать взяв множество всех чётных чисел - оно есть счётное объединение множеств из одного элмента (в отдельности каждого чётного числа), но при этом оно не конечное и не является дополнением к конечному.
+	\end{proof}
+\end{enumerate}
+\begin{rem}
+	В теории вероятности к $\sigma$-алгебре относятся события. Поскольку интересуют обычно вопросы асимптотические, что происходит, когда количество событий - очень большое (бесконечное обычно) $\Rightarrow$ надо уметь что-то делать не только с конечным набором, но и с счётным $\Rightarrow$ рассматриваются $\sigma$-алгебры в качестве множества событий.
+\end{rem}
+\begin{rem}
+	Аналогично, с точки зрения вычисления объемов, площадей и длин, $\sigma$-алгебра также естественный объект потому, что сложные объекты получаются из простых $\Rightarrow$ минимальный набор действий в алгебре.
+\end{rem}
+
+\begin{defn}
+	Пусть $S$ - какой-либо непустой набор подмножеств $X$, тогда: 
+	$$
+		\sigma(S) = \bigcap\limits_{S \subset \MF}\MF, \, \MF \text{ - } \sigma\text{-алгебры}
+	$$ 
+	называется \uwave{$\sigma$-алгеброй, порожденной $S$}.
+\end{defn}
+\begin{rem}
+	Всегда существуют $\sigma$-алгебры, содержащие $S$, например, $2^X$ обязательно содержит $S$.
+\end{rem}
+\begin{rem}
+	$\sigma(S)$ это \uline{минимальная $\sigma$-алгебра по включению}: если $\sigma$-алгебра $\MA \supset S$, то $\MA \supset \sigma(S)$.
+\end{rem}
+
+\textbf{Пример}: Возьмем $S = \{B\} \Rightarrow \sigma(S) = \{\VN,X, B, X \setminus B\}$, мы уже знаем, что это $\sigma$-алгебра.
+
+\begin{rem}
+	Построение $\sigma(S)$ это всё, что можно собрать из $S$.
+\end{rem}
+\begin{exrc}
+	Пусть $S = \{B, C\}$, опишите $\sigma(S)$.
+\end{exrc}
+\begin{proof}
+	$$
+		\sigma(S) = \{\VN, X, B, C, B \cap C, B \cup C, B \setminus C, C \setminus B, X \setminus B, X \setminus C, 
+	$$
+	$$
+		X \setminus (B \cup C), X \setminus (B \cap C), B \Delta C, X \setminus(B \Delta C), X \setminus (B\setminus C), \, X \setminus ( C \setminus B) \}
+	$$
+\end{proof}
+
+Когда мы говорим, что ``можно собрать из $S$'' не нужно понимать это буквально, поскольку это не означает, что есть некий алгоритм, который по элементам $S$ с помощью операций: $\cap, \, \cup, \, \setminus$ выводит выражение для любого множества из этой $\sigma$-алгебры. Для больших $S$, $\sigma(S)$ столь огромны, что такого описания нет. Содержательным примером такой $\sigma$-алегбры является Борелевская $\sigma$-алгебра.
+
+\subsection*{Борелевская $\sigma$-алгебра}
+
+\begin{defn}
+	Пусть $X$ - метрическое пространство. $\sigma$-алгебра: $\MB(X) = \sigma(\{\text{открытые множества}\})$ называется \uwave{Борелевской} $\sigma$-алгеброй, то есть это минимальная $\sigma$-алгебра, порожденная всеми открытыми множествами $X$.
+\end{defn}
+
+\begin{prop}
+	$\MB(\MR^n) = \sigma(\{\text{шары}\}) = \sigma(\{\text{открытые кубы}\})$.
+\end{prop}
+\begin{proof}
+	Всякое открытое множество $\MU$ это не более, чем счётное объединение открытых кубов: для каждой точки $a$ строим куб $K_a \subset \MU$ с рациональными вершинами $\Rightarrow \cup_a K_a = \MU$ и таких кубов не более, чем счётное число. Тогда:
+	$$
+		\MB(\MR^n)\subset \sigma(\{\text{открытые кубы}\})
+	$$
+	поскольку оно содержит все открытые $\Rightarrow$ должно содержать минимальную порожденную всеми открытми. Обратное включение очевидно, поскольку среди открытых множеств есть открытые кубы.
+\end{proof}
+
+\subsection*{$\sigma$-аддитивные меры}
+
+\begin{defn}
+	Пусть на $X$ задана $\sigma$-алгебра $\MA$. Функция $\mu \colon \MA \to [0, +\infty)$ называется \uwave{$\sigma$-аддитивной мерой} (конечной неотрицательной $\sigma$-аддитивной мерой), если верно свойство \uwave{$\sigma$-аддитивности}: 
+	$$
+		\forall A_j \in \MA, \, A_i \cap A_j = \VN, \, \mu\left(\cup_j A_j\right) = \ddsum{j}{}\mu(A_j)
+	$$
+\end{defn}
+\begin{rem}
+	Можно допускать в качестве значения $\mu = +\infty$, если добавить в определение:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mu(\VN) = 0$;
+		\item $\forall c \in \MR, \, c + (+\infty) = + \infty$;
+	\end{enumerate}
+\end{rem}
+\begin{defn}
+	Мера $\mu$ называется \uwave{конечной}, если она нигде не принимает значение $+\infty$.
+\end{defn}
+\begin{rem}
+	Заметим, что свойство $\mu(\VN) = 0$ во множествах с конечной мерой появляется автоматически:
+	$$
+		\mu(X) = \mu(X \cup \VN) = \mu(X) + \mu(\VN) \Rightarrow \mu(\VN) = 0
+	$$
+\end{rem}
+
+\textbf{Примеры $\sigma$-аддитивных мер}:
+\begin{enumerate}[label=\arabic*)]
+	\item \uwave{Дельта мера}: Пусть $a \in X$, тогда на $\sigma$-алгебре $2^X$ определена мера:
+	$$
+		\delta_a(B) = 
+		\begin{cases}
+			1, & a\in B\\
+			0, & a \not\in B
+		\end{cases}
+	$$
+	\begin{proof}
+		Если взять объединение попарно непересекающихся множеств, то только одно из них может содержать $a \Rightarrow$ и справа и слева будет $1$, а если ни одно не содержит, то справа и слева будет $0$.
+	\end{proof}
+	\begin{rem}
+		Также эту мерй называют \uwave{мерой Дирака};
+	\end{rem}
+	\item Пусть $X = \{1,2,\dotsc, N\}$, $\sigma$-алгебра - $2^X$ и заведём числа: $p_k \geq 0$, зададим меру:
+	$$
+		\mu(B) = p_1{\cdot}\delta_1(B) + \dotsc + p_N{\cdot}\delta_N(B) = \ddsum{k \colon k \in B}{}p_k
+	$$
+	\begin{proof}
+		Слева единички выставятся у тех $p_k$, для которых $k \in B \Rightarrow$ получится нужная нам сумма, а каждая в отдельности $\delta_k$ это $\sigma$-аддитивная мера;
+	\end{proof} 
+	\item Пусть $X = \MN$, заведем числа: $p_k \geq 0 \colon \sum_k p_k < \infty$, определим меру на $2^\MN$:
+	$$
+		\mu(B) = \ddsum{k \colon k \in B}{}p_k
+	$$
+	\begin{exrc}
+		Проверить, что эта мера является аддитивной и $\sigma$-аддитивной;
+	\end{exrc}
+	\item Существует функция $\mu \colon 2^\MN \to [0,+\infty)$ такая, что:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\mu$ - аддитивна;
+		\item $\mu(\{k\}) = 0$ и $\mu(\MN) = 1$, то есть не является $\sigma$-аддитивной;
+	\end{enumerate}
+	\begin{rem}
+		Для построения такой меры требуются знания из функционального анализа;
+	\end{rem}
+\end{enumerate}
+
+\newpage
+\begin{prop}(\textbf{Непрерывность меры})
+	Пусть $\mu$ это конечная $\sigma$-аддитивная мера на $\sigma$-алгебре $\MA$ подмножеств $X$. Тогда:
+	\begin{enumerate}[label=\arabic*)]
+		\item $A_m \in \MA, \, A_{m+1} \subset A_m \Rightarrow \mu(\cap_m A_m) = \lim\limits_{m \to \infty}\mu(A_m)$;
+		\item $B_m \in \MA, \, B_m \subset B_{m+1} \Rightarrow \mu(\cup_m B_m) = \lim\limits_{m \to \infty}\mu(B_m)$;
+	\end{enumerate}
+\end{prop}
+\begin{proof}\hfill
+	\begin{enumerate}[label=\arabic*)]
+		\item Поймем, что $2) \Rightarrow 1)$: возьмем $X \setminus A_m = B_m$, тогда $X \setminus (\cap_m A_m) = \cup_m (X \setminus A_m) = \cup_m B_m$, заметим:
+		$$
+			\mu(B_m) = \mu(X) - \mu(A_m)
+		$$
+		а также, что $B_m \subset B_{m+1} \Rightarrow A_{m+1}\subset A_m$, тогда:
+		$$
+			\mu(B_m) \leftarrow \mu(\cup_mB_m) = \mu(X) - \mu(\cap_m A_m) \Rightarrow \mu(\cap_m A_m) \to \mu(A_m)
+		$$
+		\item Рассмотрим множества: $C_1 = B_1, \, C_2 = B_2 \setminus B_1, \, C_3 = B_3 \setminus B_2, \dotsc $, тогда по построению: 
+		$$
+			B_m = \bigcup\limits_{k = 1}^{m}C_k, \, \forall k,l, \, k \neq l, \,  C_k \cap C_l = \VN \Rightarrow
+		$$
+		$$
+			\Rightarrow \mu(B_m) = \ddsum{k = 1}{m}\mu(C_k) \to \ddsum{k = 1}{\infty}\mu(C_k) = \mu(\cup_k C_k) = \mu(\cup_m B_m)
+		$$
+		где в предпоследнем равенстве мы воспользовались $\sigma$-аддитивностью;
+	\end{enumerate}
+\end{proof}
+
+\subsection*{Приближение борелевского множества замкнутыми и открытыми}
+\begin{theorem}
+	Пусть $X$ - метрическое пространство, $\MB(X)$ - борелевская $\sigma$-алгебра, мера $\mu$ это $\sigma$-аддитивная, конечная мера на $\MB(X)$, тогда: $\forall B \in \MB(X), \, \forall \VE > 0, \, \exists$ замкнутое $F_\VE$, открытое $\MU_\VE$ такие, что:
+	\begin{enumerate}[label=\arabic*)]
+		\item $F_\VE \subset B \subset \MU_\VE$;
+		\item $\mu(\MU_\VE\setminus F_\VE) < \VE$;
+	\end{enumerate}
+	То есть всякое борелевское множество приближается изнутри и снаружи замкнутым и открытым множеством.
+\end{theorem}
+\begin{proof}\hfill
+	\begin{enumerate}[label=(\arabic*)]
+		\item Проверим, что утверждение верно для замкнутых множеств. Пусть $F$ - замкнуто, выберем некоторое  $\VE > 0$, тогда $F = F_\VE$. Рассмотрим открытое множество:
+		$$
+			\MU_m = F^{\tfrac{1}{m}} = \bigcup\limits_{x \in F}\MB(x,\tfrac{1}{m}) \Rightarrow \MB(x,\tfrac{1}{m+1}) \subset \MB(x,\tfrac{1}{m}) \Rightarrow \MU_{m+1} \subset \MU_m
+		$$
+		Поскольку $F$ - замкнуто, то $F = \cap_m \MU_m$: если точка не лежит в $F$, то вокруг неё есть шар радиуса $r$ в котором никаких точек из $F$ нет и как только $\tfrac{1}{m} < r$, то эта точка не будет лежать ни в каком шаре $\MB(x,\tfrac{1}{m})$. Тогда мы знаем:
+		$$
+			\mu(F) = \lim\limits_{m \to \infty}\mu(\MU_m) \Rightarrow \exists \, m \colon \mu(\MU_m \setminus F_\VE) = \mu(\MU_m \setminus F) = \mu(\MU_m) - \mu(F) < \VE
+		$$
+		\item Проверим верность утверждения для открытых множеств. Рассмотрим набор множеств:
+		$$
+			S = \{E \in X \colon \forall \VE > 0, \, \exists \, F_\VE, \MU_\VE \colon F_\VE \subset E \subset \MU_\VE \wedge \mu(\MU_\VE \setminus  F_\VE) < \VE \}
+		$$
+		$S$ содержит все замкнутые множества. Если доказать, что $S$ это $\sigma$-алгебра, то $\MB(x) \subset S$, поскольку борелевская порождается в том числе замкнутыми множествами, а тогда для борелевских множеств автоматически будут выполнены свойства $S$. Докажем это:
+		\begin{enumerate}[label=\arabic*)]
+			\item $\VN \in S, \, F_\VE = \MU_\VE = \VN$, $X \in S, \, F_\VE = \MU_\VE = X$;
+			\item Пусть $E \in S$, возьмем $\VE > 0 \Rightarrow \exists \, F_\VE, \MU_\VE \colon F_\VE \subset E \subset \MU_\VE \Rightarrow X \setminus \MU_\VE \subset X \setminus E \subset X \setminus F_\VE$, тогда:
+			$$
+				(X \setminus F_\VE) \setminus (X \setminus \MU_\VE) = \MU_\VE \setminus F_\VE \Rightarrow \mu((X \setminus F_\VE) \setminus (X \setminus \MU_\VE)) = \mu(\MU_\VE \setminus F_\VE) < \VE
+			$$
+			Таким образом, $X \setminus E \in S$;
+			\item Остается проверить, замкнутость относительного счетного объединения. Пусть $E_m \in S$, возьмем $\VE > 0$. Рассмотрим множество $E = \cup_m E_m \Rightarrow$ рассмотрим каждое $E_m$:
+			$$
+				\forall m, \, \exists \, F_m, \MU_m \colon F_m \subset E_m \subset \MU_m \wedge \mu(\MU_m \setminus F_m) < \dfrac{\VE}{2^m}
+			$$ 
+			Тогда мы можем взять в качестве $\MU = \cup_m \MU_m$: оно будет открытым и будет содержать все  $\MU_m$. Рассмотрим множество $\wte{F} = \cup_m F_m$ оно уже может не быть замкнутым, доработаем его:
+			$$
+				\wte{F} = \bigcup\limits_m F_m = \bigcup\limits_M F^M, \, F^M = \bigcup\limits_{m = 1}^{M} F_m
+			$$
+			где $F^M$ уже замкнутые множества, поскольку конечное объединение замкнутых множеств - замкнуто. Мы хотим найти $M$ так, чтобы: $\mu(\MU \setminus F^M) < 2\VE$. Заметим:
+			$$
+				\lim\limits_{M \to \infty}\mu(\MU \setminus F^M) = \lim\limits_{M \to \infty}\mu(\MU) - \mu(F^M) = \mu(\MU \setminus \wte{F}) \leq \ddsum{m}{}\mu(\MU_m \setminus \wte{F}) \leq
+			$$
+			$$
+				\leq \ddsum{m}{}\mu(\MU_m \setminus F_m)\leq \ddsum{m}{}\dfrac{\VE}{2^m}=\VE \Rightarrow \exists\, M_0 \colon \mu(\MU \setminus F^{M_0}) < 2\VE
+			$$
+			где мы воспользовались следующим фактом: $\mu(\cup_m \MU_m) \leq \sum_{m}\mu(\MU_m)$, а также тем, что $F_m$ меньше, чем $\wte{F}$. Первое доказывается в курсе действительного анализа, либо так:
+			$$
+				A_i \cap A_j = \VN \Rightarrow \mu(\cup_m A_m) = \ddsum{m}{}\mu(A_m)
+			$$
+			по определению для попарно непересекающихся множеств, для любых же будет верно:
+			$$
+				\mu(B_1 \cup B_2) = \mu(B_1) + \mu(B_2) - \mu(B_1 \cap B_2) \leq \mu(B_1) + \mu(B_2)
+			$$
+			$$
+				\mu(\cup_{j = 1}^{m} B_j) = \mu(\cup_{j =1}^{m-1}B_j \cup B_m) \leq \mu(\cup_{j =1}^{m-1}B_j ) + \mu(B_m)
+			$$
+			далее в предположении индукции получается для всех. Такие объединения - возрастающая последовательность, переходим к пределу - получаем неравенство. Следовательно, у нас лежат дополнения, объединения $\Rightarrow$ пересечения $\Rightarrow$ у нас $\sigma$-алгебра и  утверждение доказано;
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Если $\mu$ и $\sigma$ - конечные $\sigma$-аддитивные меры на $\MB(X)$ совпадают на всех открытых множествах (тоже самое, что на всех замкнутых), то $\mu = \sigma$ на $\MB(X)$.
+\end{corollary}
+\begin{proof}
+	Пусть $B \in \MB(X)$, $\VE > 0$, $F_\VE \subset B \subset \MU_\VE, \, \mu(\MU_\VE \setminus F_\VE) < \VE$, но поскольку на $B$ меры совпадают, то:
+	$$
+		\mu(\MU_\VE \setminus F_\VE) = \mu(\MU_\VE) - \mu(F_\VE) = \sigma(\MU_\VE) - \sigma(F_\VE) < \VE \Rightarrow
+	$$
+	$$
+		\Rightarrow \mu(B) - \sigma(B) \leq \mu(\MU_\VE) - \sigma(F_\VE) = \mu(\MU_\VE \setminus F_\VE) <\VE \wedge \sigma(B) - \mu(B) \leq \sigma(\MU_\VE) - \mu(F_\VE) = \sigma(\MU_\VE \setminus F_\VE) <\VE \Rightarrow
+	$$
+	$$
+		\Rightarrow \forall \VE > 0, \, |\sigma(B) - \mu(B)| \leq \VE \Rightarrow \mu(B) = \sigma(B)
+	$$
+\end{proof}
+
+
+\end{document}

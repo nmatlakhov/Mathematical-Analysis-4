@@ -1,0 +1,547 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+\lhead{Математический анализ - \RN{4}}
+\chead{Шапошников С.В.}
+\rhead{Лекция - 3}
+
+\section*{Теорема Фубини}
+
+\begin{theorem}(\textbf{Фубини})
+	Пусть $\MI = \MI_x \times \MI_y$, $\MI_x \subset \MR^n, \, \MI_y \subset \MR^m$ - замкнутые бруски (в том числе $\MI$ тоже замкнутый брусок). Пусть $f$ интегрируема по Риману на $\MI$ и $\forall x \in \MI_x$ функция $y \mapsto f(x,y)$ интегрируема на бруске $\MI_y$, тогда функция: $x \mapsto \int_{\MI_y}f(x,y)dy$ интегрируема на $\MI_x$ и верно равенство:
+	$$
+		\iint\limits_{\MI} f(x,y)dxdy = \int\limits_{\MI_x}\Bigg(\int\limits_{\MI_y}f(x,y)dy\Bigg)dx
+	$$
+	Если $\forall y \in \MI_y$ функция $x \mapsto f(x,y)$ интегрируема на бруске $\MI_x$, тогда функция: $y \mapsto \int_{\MI_x}f(x,y)dx$ интегрируема на $\MI_y$ и верно равенство:
+	$$
+		\iint\limits_{\MI} f(x,y)dxdy = \int\limits_{\MI_y}\Bigg(\int\limits_{\MI_x}f(x,y)dx\Bigg)dy
+	$$
+\end{theorem}
+
+В прошлый раз мы доказали эту теорему и как уже говорили, условие интегрируемости было крайне важным в этой теореме. 
+\subsection*{Напоминание доказательства теоремы Фубини}
+Мы проделали следующие шаги:
+\begin{enumerate}[label=\arabic*)]
+	\item Построили функции $h_n(x,y)$ - неубывающая, $g_n(x,y)$ - невозрастающая такие, что: 
+	$$
+		h_n(x,y) \leq f(x,y) \leq g_n(x,y), \, \ddint{\MI}{}h_n(x,y) - g_n(x,y)dxdy \to 0
+	$$ 
+	$$
+		\ddint{\MI}{}h_n(x,y)dxdy \to \ddint{\MI}{}f(x,y)dxdy,  \quad \ddint{\MI}{}g_n(x,y)dxdy \to \ddint{\MI}{}f(x,y)dxdy
+	$$
+	\item Проинтегрировали эти ступенчатые функции и снова получили ступенчатые функции:
+	$$
+		H_n(x) = \ddint{\MI_y}{}h_n(x,y)dy, \quad G_n(x) = \ddint{\MI_y}{}g_n(x,y)dy,
+	$$
+	$$
+		H_n(x) \leq \ddint{\MI_y}{}f(x,y)dy \leq G_n(x)
+	$$
+	\item Поняли, что $H_n(x)$ - неубывающая, $G_n(x)$ - невозрастающая. А поскольку для индикатора бруска, а следовательно и для ступенчатой функции теорема выполнена, то верно:
+	$$
+		\ddint{\MI_x}{}H_n(x)dx = \iint\limits_{\MI}{}h_n(x,y)dxdy \to \iint\limits_{\MI}{}f(x,y)dxdy \gets \iint\limits_{\MI}{}g_n(x,y)dxdy = \ddint{\MI_x}{}G_n(x)dx 
+	$$
+	Далее критерий интегрируемости даёт нам интегрируемость $\int_{\MI_y}{}f(x,y)dy$ как функции $x$ по $x$ и требуемое равенство;
+\end{enumerate}
+
+\subsection*{Обобщение теоремы Фубини для интеграла Римана}
+
+Вопрос, а что делать если интеграл не существует. Пусть теперь нет условия, что $\exists \, \int_{\MI_y}f(x,y)dy$. Введём следующую функцию:
+$$
+	F(x) = 
+	\begin{cases}
+		\int_{\MI_y}f(x,y)dy, & \text{интеграл существует}\\
+		A, & \text{интеграл не существует}
+	\end{cases}
+$$
+Что нам необходимо добавить? Мы хотим, чтобы также выполнялось:
+$$
+	H_n(x) \leq F(x) \leq G_n(x)
+$$
+Тогда мы сразу же получаем, что:
+$$
+	\iint\limits_{\MI}{}f(x,y)dxdy = \ddint{\MI_x}{}F(x)dx
+$$
+Нам необходимо доопределить $F(x)$ так, чтобы всё время выполнялись неравенства выше, для всех $n$. Подойдет следующее число $A$:
+$$
+	A \in \left[\sup\limits_{n}H_n(x), \, \inf\limits_{n}G_n(x)\right]
+$$
+где начало и конец отрезка понимаем как пределы. Пределы $H_n(x)$ и $G_n(x)$ всегда существуют, поскольку это ограниченные, монотонные последовательности. В том случае когда интеграл существует, то точная верхняя грань $H_n(x)$ и точная нижняя грань $G_n(x)$ совпадут:
+$$
+	\lim \ddint{\MI_y}{}(h_n(x,y) - g_n(x,y))dy \xrightarrow[n\to \infty]{} 0
+$$
+Но это означает, что интеграл по $f$ существует (по критерию интегрируемости). Следовательно, можно было бы заменить последним условием про $A$ всю функцию.
+\begin{rem}
+	Теорема Фубини верна, если отменить условие интегрируемости $y \mapsto f(x,y)$ (аналогично для $x \mapsto f(x,y)$) и заменить $\int_{\MI_y}f(x,y)dy$ на $F(x)$ (или заменить $\int_{\MI_x}f(x,y)dx$ на $F(y)$). Тем не менее, плата за такую замену - большая, вместо повторного интеграла мы получаем:
+	$$
+		\iint\limits_{\MI}{}f(x,y)dxdy = \ddint{\MI_x}{}F(x)dx
+	$$
+	И на каждом сечении нам потребуется проверять интегрируемость.
+\end{rem}
+
+Возникает вопрос, а как много таких точек, в которых потребуется доопределение? Для начала вспомним определение из второго семестра.
+\begin{defn}
+	Множество $E \subset \MR$ называется \uwave{множеством меры ноль по Лебегу}, если: $\forall \VE > 0, \, \exists$ не более чем счетный набор интервалов $\{\MI_n\}$ таких, что:
+	\begin{enumerate}[label={(\arabic*)}]
+		\item Множество $E$ покрыто этими интервалами: $E \subset \bigcup_n \MI_n$;
+		\item Сумма длин этих интервалов меньше $\VE$: $\sum_{n} |\MI_n| < \VE$;
+	\end{enumerate}
+\end{defn}
+\begin{defn}
+	Если некоторое свойство имеет место для всех точек, кроме множества меры ноль, то говорят, что это \uwave{свойство выполняется почти всюду}.
+\end{defn}
+\begin{rem}
+	Заметим, что далее мы это ещё обсудим, но в общем случае, вместо отрезков будут бруски.
+\end{rem}
+
+\begin{prop}
+	Множество $x \colon \nexists \, \int_{\MI_y}f(x,y)dy$ имеет меру нуль по Лебегу.
+\end{prop}
+
+\begin{proof}
+	Рассмотрим следующие функции:
+	\begin{enumerate}[label=\arabic*)]
+		\item $F^+$, доопределив её в ``плохих'' точках значениями $\inf\limits_n G_n(x)$;
+		\item $F^-$, доопределив её в ``плохих'' точках значениями $\sup\limits_n H_n(x)$;
+	\end{enumerate}
+	Тогда очевидно, что: $F^{-}(x) \leq F^{+}(x)$ и по замечанию к теореме Фубини выше будет верно:
+	$$
+		\iint\limits_{\MI}f(x,y)dxdy = \ddint{\MI_x}{}F^+(x)dx =  \ddint{\MI_x}{}F^-(x)dx \Rightarrow
+	$$
+	$$
+		\Rightarrow \ddint{\MI_x}{}(\underbrace{F^+(x) - F^-(x)}_{\geq 0})dx = 0 \Rightarrow F^+(x) - F^-(x) = 0 \text{ почти всюду}
+	$$
+	где последнее верно по аналогии со следствием $4$ лекции $25$ семестра $2$.
+\end{proof}
+\begin{rem}
+	Далее мы приведём более строгое доказательство для брусков вместо отрезков.
+\end{rem}
+
+\textbf{\uline{Вывод}}: Теорема Фубини хороша в первоначальной формулировке, но если мы всё же не хотим требовать, чтобы на сечениях существовал интеграл, то смысл будет такой: если $f$ интегрируема на $\MI$, то существует интегрируемая на $\MI_x$ функция, которая почти всюду совпадает с интегралом $\int_{\MI_y}f(x,y)dy$ (и который тем самым объявляется существующим) и верно равенство:
+$$
+	\iint\limits_{\MI}f(x,y)dxdy = \ddint{\MI_x}{}\bigg(\ddint{\MI_y}{}f(x,y)dy\bigg)dx
+$$ 
+
+\begin{prop}
+	Пусть $\MI = \MI_x \times \MI_y$ и $f \in C(\MI)$, тогда $\exists \, \int_{\MI_x}f(x,y)dx, \, \int_{\MI_y}f(x,y)dy$ и функция $x \mapsto \int_{\MI_y}f(x,y)dy$ непрерывна на $\MI_x$, функция $y \mapsto \int_{\MI_x}f(x,y)dx$ непрерывна на $\MI_y$.
+\end{prop}
+\begin{proof}
+	Функция непрерывна на $\MI \Rightarrow$ она непрерывна по каждой переменной $\Rightarrow$ все интегралы существуют. Рассмотрим функцию: $x \mapsto \int_{\MI_y}f(x,y)dy$, пусть $x_n \to x_0$, тогда из-за равномерной непрерывности $f$ на $\MI$ (замкнутый брус это компакт $\Rightarrow f$ - равномерно непрерывна) мы получаем:
+	$$
+		f(x_n,y)\uconvm{\MI_y}{n \to \infty} f(x_0,y)
+	$$
+	Тогда по теореме о равномерном пределе под интегралом, мы получаем:
+	$$
+		\ddint{\MI_y}{}f(x_n,y)dy \xrightarrow[n \to \infty]{} \ddint{\MI_y}{}f(x_0,y)dy
+	$$
+	Аналогично для функции: $y \mapsto \int_{\MI_x}f(x,y)dx$.
+\end{proof}
+
+\begin{corollary}
+	Пусть $\MI = [a_1,b_1]\times \dotsc \times [a_n,b_n]$, $f \in C(\MI)$. Тогда для любой перестановки $(i_1, i_2,\dotsc,i_n)$ чисел $(1,2,\dotsc,n)$ верно равенство:
+	$$
+		\ddint{\MI}{}f(x)dx = \ddint{a_{i_1}}{b_{i_1}}\Bigg(\ddint{a_{i_2}}{b_{i_2}}\Bigg( \dotsc \Bigg(   \ddint{a_{i_n}}{b_{i_n}}f(x)dx_{i_n}\Bigg)  \dotsc  \Bigg)   dx_{i_2}\Bigg) dx_{i_1}
+	$$
+\end{corollary}
+\begin{rem}
+	Без непрерывности придется каждый раз доопределять функцию по аналогии с доопределением теоремы Фубини.
+\end{rem}
+\begin{proof}
+	Рассмотрим тождественную перестановку: $i_1 = 1, i_2 = 2, \dotsc, i_n = n$. По индукции докажем, что:
+	$$
+		\ddint{\MI}{}f(x)dx = \ddint{a_1}{b_1}\Bigg(\ddint{a_2}{b_2}\Bigg( \dotsc \Bigg(   \ddint{a_n}{b_n}f(x)dx_n\Bigg)  \dotsc  \Bigg)   dx_2\Bigg) dx_1
+	$$
+	\uline{База индукции}: Для $n = 1$ - очевидно, для $n = 2$ - теорема Фубини:
+	$$
+		\ddint{a_1}{b_1}f(x)dx_1 = \ddint{a_1}{b_1}f(x)dx_1, \, \ddint{\MI}{}f(x)dx_1dx_2 = \ddint{a_1}{b_1}\Bigg( \ddint{a_2}{b_2}f(x) dx_2\Bigg)dx_1
+	$$
+	\uline{Шаг индукции}: Пусть верно для $\leq n-1$. Пусть: $\MI = [a_1,b_1]\times \MI_{n-1}, \, \MI_{n-1} = [a_2,b_2]\times \dotsc \times [a_n,b_n]$, тогда из непрерывности функции $f$ на $\MI$ и по теореме Фубини будет верно:
+	$$
+		\ddint{\MI}{}f(x)dx = \ddint{a_1}{b_1}\Bigg( \ddint{\MI_{n-1}}{}f(x_1,x_2,\dotsc,x_n)dx_2dx_3\dotsc dx_n \Bigg)dx_1
+	$$
+	Расписываем внутренний интеграл по индукции и получаем требуемое. Для произвольной перестановки необходимо уметь делать транспозицию. Пусть утверждение верно для какого-либо порядка:
+	$$
+		\ddint{\MI}{}f(x)dx = \ddint{a_{i_1}}{b_{i_1}}\Bigg(\ddint{a_{i_2}}{b_{i_2}}\Bigg( \dotsc \Bigg(   \ddint{a_{i_n}}{b_{i_n}}f(x)dx_{i_n}\Bigg)  \dotsc  \Bigg)   dx_{i_2}\Bigg) dx_{i_1}
+	$$
+	Достаточно уметь делать транспозицию соседних интегралов: рассмотрим $i_k$ и $i_{k+1}$:
+	$$
+		\ddint{a_{i_k}}{b_{i_k}}\Bigg(  \ddint{a_{i_{k+1}}}{b_{i_{k+1}}} F(x)dx_{i_{k+1}}\Bigg)dx_{i_k} = \ddint{\MI_{i_k} \times \MI_{i_{k+1}}}{} F(x)dx_{i_k}dx_{i_{k+1}} = \ddint{a_{i_{k+1}}}{b_{i_{k+1}}} \Bigg( \ddint{a_{i_k}}{b_{i_k}}  F(x)dx_{i_k}\Bigg)dx_{i_{k+1}}
+	$$
+	где $F$ это интеграл от $f$ по некоторому бруску $\Rightarrow F$ это непрерывная функция $\Rightarrow$ интегрируемая на прямоугольнике: $\MI_{i_k} \times \MI_{i_{k+1}} = [a_{i_k},b_{i_k}]\times[a_{i_{k+1}},b_{i_{k+1}}] \Rightarrow$ можем поменять порядок по теореме Фубини.
+\end{proof}
+\newpage
+\subsection*{Формула интегрирования по частям}
+
+\begin{theorem}(\textbf{Формула интегрирования по частям})
+	Пусть $f, g \in C^1(\MI)$ и $f = 0$ на границе $\MI$ (на гранях), тогда для всякого $k$ верно равенство:
+	$$
+		\ddint{\MI}{}f(x){\cdot}\dfrac{\partial g}{\partial x_k}(x)dx = - \ddint{\MI}{}g(x){\cdot}\dfrac{\partial f}{\partial x_k}(x)dx
+	$$
+\end{theorem}
+\begin{rem}
+	Заметим, что здесь нет внеинтегрального члена, поскольку $f = 0$. Когда $f \neq 0$, то лучше это обсуждать в теме поверхностного интегрирования.
+\end{rem}
+\begin{proof}
+	Пусть $\MI = [a_1,b_1]\times \dotsc \times [a_n,b_n]$, тогда:
+	$$
+		\ddint{\MI}{}f(x){\cdot}\dfrac{\partial g}{\partial x_k}(x)dx = \underbrace{\ddint{a_1}{b_1} \dotsc}_{\text{все кроме } k} \Bigg( \ddint{a_k}{b_k}f(x)\dfrac{\partial g}{\partial x_k}dx_k \Bigg)\dotsc dx_1
+	$$
+	Поскольку все $x_i$ фиксированы, кроме $x_k$, то применим формулу интегрирования по частям к внутреннему интегралу, с учетом того, что $f(x) = 0$ на гранях $\MI$:
+	$$
+		\ddint{a_k}{b_k}f(x){\cdot}\dfrac{\partial g}{\partial x_k}(x)dx_k =f(x){\cdot}g(x)\Big\vert_{x_k = a_k}^{b_k} - \ddint{a_k}{b_k}\dfrac{\partial f}{\partial x_k}(x){\cdot}g(x)dx_k = - \ddint{a_k}{b_k}\dfrac{\partial f}{\partial x_k}(x){\cdot}g(x)dx_k \Rightarrow
+	$$
+	$$
+		\Rightarrow \ddint{a_1}{b_1} \dotsc \Bigg( \ddint{a_k}{b_k}f(x)\dfrac{\partial g}{\partial x_k}dx_k \Bigg)\dotsc dx_1 = -\ddint{a_1}{b_1} \dotsc \Bigg( \ddint{a_k}{b_k}\dfrac{\partial f}{\partial x_k}(x){\cdot}g(x)dx_k \Bigg)\dotsc dx_1 = - \ddint{\MI}{}g(x){\cdot}\dfrac{\partial f}{\partial x_k}(x)dx
+	$$
+	где в последнем равенстве мы опять воспользовались теоремой Фубини в силу непрерывности $f$ на $\MI$.
+\end{proof}
+
+\begin{corollary}
+	Пусть $f,g \in C^m(\MI)$, $f,f^{(1)}, \dotsc, f^{(m-1)} = 0$ на границе $\MI$, тогда $\forall (i_1,\dotsc,i_m)$:
+	$$
+		\ddint{\MI}{}f(x){\cdot}\dfrac{\partial^m g}{\partial x_{i_1}\dotsc \partial x_{i_m}}(x)dx = (-1)^m{\cdot}\ddint{\MI}{}\dfrac{\partial^m f(x)}{\partial x_{i_1}\dotsc \partial x_{i_m}}{\cdot}g(x)dx
+	$$
+\end{corollary}
+\begin{proof}
+	Доказывается по индукции с применением формулы интегрирования по частям.
+\end{proof}
+
+\begin{rem}
+	Отметим, что писать так: $\int_{\MI}f(\vecm{x})d\vecm{x}$ - некорректно, правда раньше так писали. Сейчас запись преимущественно имеет вид: $\int_{\MI}f(x)dx$ или $\int_{\MI}f$, но последняя запись очень плоха для геометрии, так как надо писать дифференциальную форму по которой идёт интегрирование. 
+	
+	Также заметим, что сейчас мы под $dx$ понимаем: $dx_1{\cdot}\dotsc{\cdot}dx_n$, но далее мы будем воспринимать $dx$ как слитный символ, где $dx_1, \dotsc ,dx_n$ не разделены. Они распадутся в отдельные интегралы по $x_1,\dotsc,x_n$, когда будет применена теорема Фубини. Таким образом, можно $dx$ воспринимать как элемент объема. Символ $dx$ не будет произведением: $dx_1,\dotsc, dx_n$, поскольку тела не обязана иметь вид бруска, например, у шара это уже никакое не произведение -  оно произведение в смысле теоремы Фубини.
+\end{rem}
+\newpage
+
+\section*{Критерий Лебега}
+
+Ранее мы вывели критерий интегрируемости и из него вывели теорему Фубини и её следствия. Критерий подразумевает, что мы легко умеем строить ступенчатые функции и нам очевидно, стремятся интегралы от них к одному и тому же или нет. Делать это не очень удобно и более того совершать проверки для произвольных функций даже на $3$-хмерных брусках достаточно сложно. Таким образом, хотелось бы какой-нибудь простой критерий. Для одномерных случаев таким был критерий Лебега.
+
+\subsection*{Множество меры нуль по Лебегу}
+\begin{defn}
+	Множество $E \subset \MR^n$ называется \uwave{множеством меры нуль по Лебегу}, если: $\forall \VE > 0, \, \exists \, $ не более чем счетный набор замкнутых брусков $\{\MI_k\}$ такой, что:
+	\begin{enumerate}[label=\arabic*)]
+		\item $E \subset \bigcup_k \MI_k$;
+		\item $\sum_k |\MI_k| < \VE$;
+	\end{enumerate}
+\end{defn}
+\textbf{Примеры}: 
+\begin{enumerate}[label=\arabic*)]
+	\item Точка - множество меры нуль по Лебегу;
+	\item Конечный набор точек - множество меры нуль по Лебегу;
+\end{enumerate}
+
+\begin{prop}
+	В определении множества меры нуль по Лебегу замкнутые брусы: $[a_1,b_1]\times \dotsc \times [a_n,b_n]$ можно заменить на открытые: $(a_1,b_1)\times \dotsc \times (a_n,b_n)$.
+\end{prop}
+\begin{proof}\hfill\\
+	$(\Leftarrow)$ Если $E$ покрыли открытыми $\MJ_k \colon \sum_k |\MJ_k| < \VE$, то $E$ покрыто замкнутыми брусками: $\ovl{\MJ}_k,\, |\MJ_k| = |\ovl{\MJ}_k|$:
+	$$
+		E \subset \bigcup\limits_k \MJ_k \subseteq \bigcup\limits_k \ovl{\MJ}_k, \, \ddsum{k}{}|\MJ_k| = \ddsum{k}{}|\ovl{\MJ}_k| < \VE
+	$$
+	$(\Rightarrow)$ Если $E$ покрыли замкнутыми $\MI_k \colon \sum_k |\MI_k| < \VE$, то:
+	$$
+		\MI_k = [a_1^k, b_1^k] \times \dotsc \times [a_n^k, b_n^k] \subset \MJ_k = (\alpha_1^k,\beta_1^k) \times \dotsc \times (\alpha_n^k,\beta_n^k), \quad \beta_i^k - \alpha_i^k = 3 (b_i^k - a_i^k) \Rightarrow
+	$$
+	$$
+		\Rightarrow |\MJ_k| = 3^n{\cdot}|\MI_k| \Rightarrow \ddsum{k}{}|\MJ_k| < 3^n\VE
+	$$
+	Так как $\VE$ - произвольное, то умеем покрывать открытыми $\forall \VE > 0$.
+\end{proof}
+
+\begin{corollary}
+	Пусть $\MI = [a_1,b_1]\times \dotsc \times[a_n,b_n]$, причём верно: $\forall k, \, b_k - a_k > 0$. Тогда $\MI$ не является множеством меры нуль.
+\end{corollary}
+\begin{proof}
+	Предположим противное, пусть: 
+	$$
+		0 < \VE < |\MI|, \, \MI \subset \bigcup_k \MJ_k, \, \MJ_k \text{ - открытые}, \, \sum_k |\MJ_k| < \VE
+	$$ 
+	Поскольку $\MI$ это компакт, то можно считать, что:
+	$$
+		\MI \subset \bigcup\limits_{k = 1}^{N}\MJ_k \Rightarrow |\MI | \leq \ddsum{k = 1}{N}|\MJ_k| < \VE
+	$$
+	Получили противоречие.
+\end{proof}
+
+\begin{prop}
+	Пусть $\MI$ - замкнутый брус в $\MR^n$ и $f\in C(\MI)$, тогда $\Gamma_f = \{(x,y) \mid y = f(x), \, x \in \MI\}$ - график функции $f$ является множеством меры нуль по Лебегу в $\MR^{n+1}$.
+\end{prop}
+\begin{proof}
+	Поскольку $f \in C(\MI)$, то $f$ - равномерно непрерывна на $\MI$, тогда разбиваем $\MI$ на бруски $\{\MI_k\}$ так, чтобы:
+	$$
+		\forall \VE > 0, \, \exists \, \delta > 0 \colon \diam(\MI_k) < \delta \Rightarrow \forall x, \wte{x} \in \MI_k, \, |f(x) - f(\wte{x})| < \VE
+	$$
+	Последнее верно, поскольку мы берём разбиение, диаметр которого меньше $\delta$. Следовательно:
+	$$
+		\forall k, \, \exists \, [\alpha_k,\beta_k] \colon \beta_k - \alpha_k = 2\VE, \, \{(x,f(x)) \mid x \in \MI_k\} \subset \MI_k \times [\alpha_k, \beta_k] = \MJ_k \Rightarrow |\MJ_k| = |\MI_k|{\cdot}2\VE \Rightarrow
+	$$
+	$$
+		\Rightarrow \Gamma_f \subset \bigcup\limits_k \MJ_k, \, \ddsum{k}{}|\MJ_k| = 2\VE{\cdot}\ddsum{k}{}|\MI_k| = 2\VE{\cdot}|\MI|
+	$$
+	В силу произвольности $\VE$ мы получаем требуемое.
+\end{proof}
+\begin{rem}
+	Полезно иметь в виду, что графики всех разумных функций являются множеством меры ноль и это в определенном смысле из продвинутой теоремы Фубини. Но мы пока не можем это доказать нашими средствами.
+\end{rem}
+\begin{rem}
+	Тем самым любые плоскости, гиперплоскости это множество меры нуль в пространстве большей размерности. Или всё что мы нарисуем меньшей размерности (в условиях теоремы), чем размерность пространства, будет множеством меры нуль.
+\end{rem}
+
+\subsection*{Свойства множеств меры нуль}
+\begin{prop}(\textbf{Свойства множеств меры нуль})\hfill
+	\begin{enumerate}[label=\arabic*)]
+		\item Если $D$ - множество меры нуль по Лебегу и $E \subset D$, то $E$ - множество меры нуль;
+		\item Если $\{E_n\}$ - не более чем счётный набор множеств меры нуль, то $\bigcup_n E_n$ - множество меры нуль;
+	\end{enumerate}
+\end{prop}
+\begin{proof}\hfill
+	\begin{enumerate}[label=\arabic*)]
+		\item Очевидно, поскольку накрыли $D \Rightarrow$ накрыли и $E \subset D$ так, что сумма объемов $< \VE$;
+		\item Возьмем произвольный $\VE > 0$, накроем $E_n$ брусками: $E_m \subset \bigcup_k \MI_k^m \colon \sum_k |\MI_k^m| < \tfrac{\VE}{2^m}$. Тогда:
+		$$
+			\bigcup_m E_m \subset \bigcup_{k,m} \MI_k^m, \quad \ddsum{k,m}{}|\MI_k^m| < \VE{\cdot}\ddsum{m}{}\dfrac{1}{2^m} < \VE 
+		$$
+	\end{enumerate}	
+\end{proof}
+
+\begin{defn}
+	Если некоторое свойства выполняется для всех точек $x$, кроме точек множества меры нуль, то говорят, что это свойство выполняется \uwave{почти всюду}.
+\end{defn}
+
+\begin{prop}
+	Если $f$ интегрируема на $\MI$ и $f = 0$ почти всюду, тогда верно:
+	$$
+		\ddint{\MI}{}f(x)dx = 0
+	$$
+\end{prop}
+\begin{proof}
+	Пусть $\{\MI_i\}$ это разбиение $\MI$. По условию, поскольку $f$ интегрируема, то:
+	$$
+		\sigma(f,\MTB,\xi) = \ddsum{i}{}f(\xi_i){\cdot}|\MI_i| \xrightarrow[\lambda(\MTB) \to 0]{} \ddint{\MI}{}f(x)dx
+	$$
+	Множество $\MI_i$ - не множество меры нуль $\Rightarrow \exists \, \xi \in \MI_i \colon f(\xi) = 0$, но поскольку Риманова сумма не зависит от выбора $\xi_i$, то мы получим:
+	$$
+		\sigma(f,\MTB,\xi) = \ddsum{i}{}0{\cdot}|\MI_i| = 0 \xrightarrow[\lambda(\MTB) \to 0]{} 0 \Rightarrow \ddint{\MI}{}f(x)dx = 0
+	$$
+\end{proof}
+\subsection*{Критерий Лебега}
+\begin{theorem}(\textbf{Критерий Лебега})
+	$f$ интегрируема по Риману на $\MI \Leftrightarrow f$ - ограничена и $f$ - непрерывна почти всюду на $\MI$.
+\end{theorem}
+
+\end{document}
